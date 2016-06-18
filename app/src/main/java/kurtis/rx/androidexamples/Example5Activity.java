@@ -17,7 +17,7 @@ public class Example5Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         configureLayout();
 
-        Single.just(4).map(new Func1<Integer, String>() {
+        Single.just(4).map(new Func1<Integer, String>() {//使用map方法，将Integer数据转为String
             @Override
             public String call(Integer integer) {
                 return String.valueOf(integer);

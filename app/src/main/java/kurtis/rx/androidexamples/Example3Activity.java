@@ -17,6 +17,9 @@ import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
+/**
+ * Obervable轻量级版本Single
+ */
 public class Example3Activity extends AppCompatActivity {
 
     private Subscription mTvShowSubscription;
@@ -35,6 +38,7 @@ public class Example3Activity extends AppCompatActivity {
     }
 
     private void createSingle() {
+        //创建一个Single
         Single<List<String>> tvShowSingle = Single.fromCallable(new Callable<List<String>>() {
             @Override
             public List<String> call() throws Exception {

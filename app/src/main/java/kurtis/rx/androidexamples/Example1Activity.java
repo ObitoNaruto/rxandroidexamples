@@ -24,18 +24,19 @@ public class Example1Activity extends AppCompatActivity {
     }
 
     private void createObservable() {
-        Observable<List<String>> listObservable = Observable.just(getColorList());
-
-        listObservable.subscribe(new Observer<List<String>>() {
+        //创建被观察者
+        Observable<List<String>> listObservable = Observable.just(getColorList());//just里面不能是耗时操作，否则会立即执行并阻塞UI线程
+        //Observer一旦订阅这个Observable就会立即调用onNext()方法并传入Observale.just()的参数，而后因为Observable没有数据可以发送了，OnComplete()才会被调用
+        listObservable.subscribe(new Observer<List<String>>() {//订阅
 
             @Override
             public void onCompleted() {
-
+                //这里我们不关心Observable何时完成数据的传输,所以不用早onComplete方法中写代码
             }
 
             @Override
             public void onError(Throwable e) {
-
+                //这里也不会有异常抛出，所以也不用管onError方法
             }
 
             @Override

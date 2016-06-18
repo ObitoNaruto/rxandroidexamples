@@ -10,6 +10,9 @@ import android.widget.TextView;
 import rx.Observer;
 import rx.subjects.PublishSubject;
 
+/**
+ * Subject:这个对象即是Observable又是Observer
+ */
 public class Example4Activity extends AppCompatActivity {
 
     private TextView mCounterDisplay;

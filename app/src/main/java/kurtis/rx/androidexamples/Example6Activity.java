@@ -43,12 +43,12 @@ public class Example6Activity extends AppCompatActivity {
     private void createObservables() {
         mSearchResultsSubject = PublishSubject.create();
         mTextWatchSubscription = mSearchResultsSubject
-                .debounce(400, TimeUnit.MILLISECONDS)
+                .debounce(400, TimeUnit.MILLISECONDS)//告诉mSearchResultsSubject在没有数据传入达400毫秒时才发送数据
                 .observeOn(Schedulers.io())
                 .map(new Func1<String, List<String>>() {
                     @Override
                     public List<String> call(String s) {
-                        return mRestClient.searchForCity(s);
+                        return mRestClient.searchForCity(s);//2.然后调用这里
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +65,7 @@ public class Example6Activity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<String> cities) {
-                        handleSearchResults(cities);
+                        handleSearchResults(cities);//3.数据返回后，回调这里
                     }
                 });
     }
@@ -98,7 +98,7 @@ public class Example6Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                mSearchResultsSubject.onNext(s.toString());
+                mSearchResultsSubject.onNext(s.toString());//1.首先调用
             }
 
             @Override
